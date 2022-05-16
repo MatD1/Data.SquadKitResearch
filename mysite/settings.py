@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'myapi.apps.MyapiConfig',
     'rest_framework',
     "rest_framework_api_key",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
@@ -130,7 +131,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework_api_key.permissions.HasAPIKey",
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
     
 }
 
@@ -151,3 +155,5 @@ sentry_sdk.init(
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+
+SECURE_SSL_REDIRECT=True

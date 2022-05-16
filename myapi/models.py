@@ -1,4 +1,5 @@
 from datetime import datetime
+import uuid
 from django.db import models
 
 # Create your models here.
@@ -12,8 +13,9 @@ class Post(models.Model):
         return self.name
 
 class AustralianArmy(models.Model):
-    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name')
+    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    UUID = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=False )
     PrimaryWeapon = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Sight')
     PrimaryFiringModes = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
@@ -57,7 +59,7 @@ class AustralianArmy(models.Model):
         return self.RoleName
 
 class CanadianArmy(models.Model):
-    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name')
+    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
     PrimaryWeapon = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Sight')
@@ -102,7 +104,7 @@ class CanadianArmy(models.Model):
         return self.RoleName
 
 class IrregularMilitia(models.Model):
-    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name')
+    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
     PrimaryWeapon = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Sight')
@@ -147,7 +149,7 @@ class IrregularMilitia(models.Model):
         return self.RoleName
 
 class MiddleEasternAlliance(models.Model):
-    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name')
+    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
     PrimaryWeapon = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Sight')
@@ -192,7 +194,7 @@ class MiddleEasternAlliance(models.Model):
         return self.RoleName
 
 class PanAsia(models.Model):
-    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name')
+    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
     PrimaryWeapon = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Sight')
@@ -237,7 +239,7 @@ class PanAsia(models.Model):
         return self.RoleName
 
 class RussianGroundForces(models.Model):
-    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name')
+    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
     PrimaryWeapon = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Sight')
@@ -282,7 +284,7 @@ class RussianGroundForces(models.Model):
         return self.RoleName
 
 class UnitedStatesArmy(models.Model):
-    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name')
+    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
     PrimaryWeapon = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Sight')
@@ -296,7 +298,7 @@ class UnitedStatesArmy(models.Model):
     SecondaryWeaponMagRoundAmount = models.IntegerField(default=0, verbose_name='Role Secondary Weapon Magazine Round Amount')
     Knife = models.CharField(max_length=30, default='N/A', verbose_name='Role Knife')
   #Equipment Slot 3-6
-    thirdSlot = models.CharField(max_length=30, default='N/A', verbose_name='Third Equipment Slot')
+    thirdSlot = models.CharField(max_length=30, default='N/A', verbose_name='Third Equipment Slot', unique=True)
     thirdSlot_Amount = models.PositiveIntegerField(default=0, verbose_name='Third Equipment Slot Amount' )
     thirdSlot_1 = models.CharField(max_length=30, default='N/A', verbose_name='Third Equipment Slot #2')
     thirdSlot_1_Amount = models.PositiveIntegerField(default=0, verbose_name='Third Equipment Slot #2 Amount' )
@@ -327,7 +329,7 @@ class UnitedStatesArmy(models.Model):
         return self.RoleName
 
 class UnitedStatesMarineCore(models.Model):
-    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name')
+    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
     PrimaryWeapon = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Sight')
@@ -372,7 +374,7 @@ class UnitedStatesMarineCore(models.Model):
         return self.RoleName
 
 class Insurgent(models.Model):
-    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name')
+    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
     PrimaryWeapon = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Sight')
@@ -417,7 +419,7 @@ class Insurgent(models.Model):
         return self.RoleName
 
 class British(models.Model):
-    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name')
+    RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
     PrimaryWeapon = models.CharField(max_length=40, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=30, default='N/A', verbose_name='Role Primary Weapon Sight')
