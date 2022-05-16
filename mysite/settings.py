@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-l*m0&6c7pci8%mo360)#mkumx%8_n31hyq1)c95e(&b3q#a%8(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000']
+ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000']
 
 
 # Application definition
@@ -42,11 +42,13 @@ INSTALLED_APPS = [
     'rest_framework',
     "rest_framework_api_key",
     "django_filters",
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -137,6 +139,12 @@ REST_FRAMEWORK = {
     ],
     
 }
+
+CORS_ALLOWED_ORIGINS = [
+    'https://pyapi.squadkitresearch.net',
+    'https://pythonapi.herokuapp.com',
+    'http://localhost:3000'
+]
 
 sentry_sdk.init(
     dsn="https://bd875a00db0d4de3a0b404bd9b75c3ec@o1247528.ingest.sentry.io/6407493",
