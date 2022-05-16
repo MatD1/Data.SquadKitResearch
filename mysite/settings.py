@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-l*m0&6c7pci8%mo360)#mkumx%8_n31hyq1)c95e(&b3q#a%8(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000']
+ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
 
 # Application definition
@@ -143,7 +143,8 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     'https://pyapi.squadkitresearch.net',
     'https://pythonapi.herokuapp.com',
-    'http://localhost:3000'
+    'https://squadkitresearch.net',
+    'http://localhost:3000',
 ]
 
 sentry_sdk.init(
