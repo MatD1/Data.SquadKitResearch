@@ -406,7 +406,7 @@ class Insurgent(models.Model):
     PrimaryFiringModes = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
     PrimaryMagazineAmount = models.IntegerField(default=0, verbose_name='Role Primary Weapon Mag Amount')
     Primary_2_MagazineAmount = models.IntegerField(default=0, verbose_name='Role Primary Weapon Mag Amount #2')
-    Primary_2_MagazineRoundAmount = models.IntegerField(default=0, verbose_name='Role Primary Weapon Mag Round Amount')
+    PrimaryMagazineRoundAmount = models.IntegerField(default=0, verbose_name='Role Primary Weapon Mag Round Amount')
     Primary_2_MagazineRoundAmount = models.IntegerField(default=0, verbose_name='Role Primary Weapon Mag Round Amount #2')
     SecondaryWeapon = models.CharField(max_length=60, default='N/A', verbose_name='Role Secondary')
     SecondaryWeaponSights = models.CharField(max_length=60, default='N/A', verbose_name='Role Secondary Weapon Sights')
