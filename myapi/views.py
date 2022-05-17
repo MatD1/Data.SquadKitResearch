@@ -20,6 +20,11 @@ from reportlab.lib.pagesizes import letter
 def index(request):
     context = {}
     return render(request, "index.html", context=context)
+
+def genReport(request):
+    context = {}
+    return render(request, "genReport.html", context=context)
+    
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('name')
     serializer_class = PostSerializer

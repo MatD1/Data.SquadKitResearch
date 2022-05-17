@@ -19,7 +19,8 @@ from myapi import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('generate', views.index),
+    path('generate', views.genReport),
+    path('', views.index),
     path('british-report', views.britishReport),
     path('insurgent-report', views.insurgentReport),
     path('australian-report', views.australianReport),
