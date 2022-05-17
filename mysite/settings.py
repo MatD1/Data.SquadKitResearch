@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l*m0&6c7pci8%mo360)#mkumx%8_n31hyq1)c95e(&b3q#a%8('
+SECRET_KEY = '%#-dh$s)%l917x8wf9o+zwre1ik^z#5f)#i-bdz#9*vtr36818'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.c
 # Application definition
 
 INSTALLED_APPS = [
+    'django_admin_env_notice',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django_admin_env_notice.context_processors.from_settings",
             ],
         },
     },
@@ -164,5 +166,16 @@ sentry_sdk.init(
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
-
-SECURE_SSL_REDIRECT=False
+# Security Settings
+SECURE_HSTS_SECONDS = 3600
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+# Django admin enviroment Notice
+ENVIRONMENT_NAME = "Production server"
+ENVIRONMENT_COLOR = "#13E55F"
+ENVIRONMENT_NAME = "Development server"
+ENVIRONMENT_COLOR = "#F40505"
+ENVIRONMENT_FLOAT = True
