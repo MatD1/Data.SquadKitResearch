@@ -1,11 +1,16 @@
 from dataclasses import field
 from rest_framework import serializers
-from .models import AustralianArmy, British, CanadianArmy, IrregularMilitia, MiddleEasternAlliance, PanAsia, Post, Insurgent, RussianGroundForces, UnitedStatesArmy, UnitedStatesMarineCore
+from .models import Alerts, AustralianArmy, British, CanadianArmy, IrregularMilitia, MiddleEasternAlliance, PanAsia, Post, Insurgent, RussianGroundForces, UnitedStatesArmy, UnitedStatesMarineCore
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta: 
         model = Post
+        fields = ['id','name', 'body', 'createdat'];
+
+class AlertsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta: 
+        model = Alerts
         fields = ['id','name', 'body', 'createdat'];
         
 class InsurgentSerializer(serializers.HyperlinkedModelSerializer):

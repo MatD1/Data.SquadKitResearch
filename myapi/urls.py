@@ -4,6 +4,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'posts', views.PostViewSet),
+router.register(r'alerts', views.AlertsViewSet),
 router.register(r'insurgents', views.InsurgentViewSet),
 router.register(r'british', views.BritishViewSet),
 router.register(r'australian-army', views.AustralianArmyViewSet),

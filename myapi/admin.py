@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import AustralianArmy, British, CanadianArmy, IrregularMilitia, MiddleEasternAlliance, PanAsia, Post, Insurgent, RussianGroundForces, UnitedStatesArmy, UnitedStatesMarineCore
+from .models import Alerts, AustralianArmy, British, CanadianArmy, IrregularMilitia, MiddleEasternAlliance, PanAsia, Post, Insurgent, RussianGroundForces, UnitedStatesArmy, UnitedStatesMarineCore
 # Register your models here.
 admin.site.register(Post)
+admin.site.register(Alerts)
 admin.site.register(British)
 admin.site.register(Insurgent)
 admin.site.register(AustralianArmy)

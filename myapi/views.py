@@ -2,16 +2,23 @@ from encodings import search_function
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
-from .serializers import AustralianArmySerializer, BritishSerializer, CanadianArmySerializer, InsurgentSerializer, IrregularMilitiaSerializer, MiddleEasterAllianceSerializer, PanAsiaSerializer, PostSerializer, RussianGroundForcesSerializer, UnitedStatesArmySerializer, UnitedStatesMarineCoreSerializer
-from .models import AustralianArmy, British, CanadianArmy, IrregularMilitia, Post, Insurgent, MiddleEasternAlliance, PanAsia, RussianGroundForces, UnitedStatesArmy, UnitedStatesMarineCore
+from .serializers import AlertsSerializer, AustralianArmySerializer, BritishSerializer, CanadianArmySerializer, InsurgentSerializer, IrregularMilitiaSerializer, MiddleEasterAllianceSerializer, PanAsiaSerializer, PostSerializer, RussianGroundForcesSerializer, UnitedStatesArmySerializer, UnitedStatesMarineCoreSerializer
+from .models import Alerts, AustralianArmy, British, CanadianArmy, IrregularMilitia, Post, Insurgent, MiddleEasternAlliance, PanAsia, RussianGroundForces, UnitedStatesArmy, UnitedStatesMarineCore
 # Create your views here.
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('name')
     serializer_class = PostSerializer
     filter_backends = [DjangoFilterBackend]
-    search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id']
+    search_fields = ['name', 'id']
+    filterset_fields = ['name', 'id']
+
+class AlertsViewSet(viewsets.ModelViewSet):
+    queryset = Alerts.objects.all().order_by('name')
+    serializer_class = AlertsSerializer
+    filter_backends = [DjangoFilterBackend]
+    search_fields = ['name', 'id']
+    filterset_fields = ['name', 'id']
 
 class InsurgentViewSet(viewsets.ModelViewSet):
     queryset = Insurgent.objects.all().order_by('id')

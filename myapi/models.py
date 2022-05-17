@@ -11,6 +11,14 @@ class Post(models.Model):
 
     def __str__(self):
         return self.name
+        
+class Alerts(models.Model):
+    name = models.CharField(max_length=30)
+    body = models.TextField(max_length=200)
+    createdat = models.DateTimeField(datetime.now)
+
+    def __str__(self):
+        return self.name
 
 class AustralianArmy(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
