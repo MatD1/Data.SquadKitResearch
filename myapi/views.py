@@ -1,3 +1,5 @@
+import datetime
+from turtle import fillcolor
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
@@ -119,17 +121,6 @@ def british_pdf(request):
     textob = c.beginText()
     textob.setTextOrigin(inch, inch)
     textob.setFont("Helvetica", 14)
-    style = styles["Normal"]
-
-
-    # Add lines of text
-    # lines = [
-    #     'Line 1',
-    #     'Line 2',
-    #     'Line 3',
-    #     'Line 4',
-    # ]
-
     britishs = British.objects.all()
     # Create blank list
     lines = [
@@ -183,63 +174,25 @@ def british_pdf(request):
     # Return
     return FileResponse(buf, as_attachment=True, filename="Report.pdf")
 
-def report(request):
-
-    pdf = FPDF('P', 'mm', 'A4')
-    pdf.add_page()
-    pdf.set_font('helvetica', 'B', 16)
-    pdf.cell(40, 10, 'SquadKitResearch Automatically Generated PDF Reports',0,1)
-    pdf.cell(40, 10, 'INSIDE USE ONLY',0,1)
-    pdf.cell(40, 10, '',0,1)
-    pdf.set_font('helvetica', '', 12)
-    pdf.cell(200, 8, f"{'Role Name'.ljust(30)} {'Faction'.rjust(40)}", 0, 1)
-    pdf.line(10, 40, 190, 40)
-    pdf.line(10, 48, 190, 48)
-    britishs = British.objects.all()
-    line = []
-    for british in britishs:
-        line.append(pdf.cell(200, 8, f"{british.RoleName.ljust(30)} {british.faction.rjust(20)}", 0, 1))
-    pdf.cell(40, 10, '',0,1)
-    pdf.set_font('helvetica', '', 12)
-    pdf.cell(200, 8, f"{'Role Weapons'.ljust(30)} {'Weapon Magazine'.rjust(40)} {'Round per mag'.rjust(40)} ", 0, 1)
-    pdf.line(10, 73, 190, 73)
-    pdf.line(10, 81, 190, 81)
-    for british in britishs:
-        line.append(pdf.cell(200, 8, f"{british.PrimaryWeapon.ljust(30)} {str(british.PrimaryMagazineAmount).rjust(20)} {str(british.PrimaryMagazineRoundAmount).rjust(60)}", 0, 1)),
-        line.append(pdf.cell(200, 8, f"{british.SecondaryWeapon.ljust(30)} {str(british.SecondaryWeaponMagAmount).rjust(29)} {str(british.SecondaryWeaponMagRoundAmount).rjust(61)}", 0, 1)),
-
-    pdf.cell(40, 10, '',0,1)
-    pdf.set_font('helvetica', '', 12)
-    pdf.cell(200, 8, f"{'Primary Weapon Sights'.ljust(30)} {'Secondary Weapon Sights'.rjust(45)}", 0, 1)
-    pdf.line(10, 123, 190, 123)
-    pdf.line(10, 131, 190, 131)
-    for british in britishs:
-        line.append(pdf.cell(200, 8, f"{british.PrimaryWeaponSights.ljust(30)} {str(british.SecondaryWeaponSights).rjust(50)}", 0, 1)),
-
-    pdf.cell(40, 10, '',0,1)
-    pdf.set_font('helvetica', '', 12)
-    pdf.cell(200, 8, f"{'Primary Weapon Firing Mode'.ljust(30)} {'Secondary Weapon Firing Mode'.rjust(45)}", 0, 1)
-    pdf.line(10, 157, 190, 157)
-    pdf.line(10, 165, 190, 165)
-    for british in britishs:
-        line.append(pdf.cell(200, 8, f"{british.PrimaryFiringModes.ljust(30)} {str(british.SecondaryWeaponFiringModes).rjust(40)}", 0, 1)),
-    pdf.output('report.pdf', 'F')
-    return FileResponse(open('report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
-
-
 def allReport(request):
+    
 
     pdf = FPDF('P', 'mm', 'A4')
     pdf.add_page()
-    pdf.set_font('helvetica', 'B', 16)
+    pdf.image("https://storage.googleapis.com/skr-api/SKR.png", 180, 0, 25)
+    pdf.set_font('helvetica', 'B', 20)
+    pdf.set_margin(1)
+    pdf.set_author="SquadKitResearch"
+    pdf.set_lang="en-US"
+    pdf.set_auto_page_break=True
     pdf.cell(40, 10, 'SquadKitResearch Automatically Generated PDF Reports',0,1)
     pdf.cell(40, 10, 'INSIDE USE ONLY',0,1)
     pdf.cell(40, 10, 'All Faction Roles',0,1)
     pdf.cell(40, 10, '',0,1)
+    pdf.ln(20)
     pdf.set_font('helvetica', '', 12)
-    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'ALL FACTIONS'.rjust(40)}", 0, 1)
-    pdf.line(10, 50, 190, 50)
-    pdf.line(10, 58, 190, 58)
+    pdf.set_fill_color(200, 220, 255)
+    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'ALL FACTIONS'.rjust(40)}", 0, 1, fill=True, align='L')
     britishs = British.objects.all()
     insurgents = Insurgent.objects.all()
     australians = AustralianArmy.objects.all()
@@ -267,6 +220,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(australian.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {australian.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1325", x=140, y=280, w=4, h=10)
     for canadian in canadians:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {canadian.RoleName.ljust(50)}", 2, 2))
@@ -283,6 +238,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(canadian.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {canadian.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1326", x=140, y=280, w=4, h=10)
     for canadian in canadians:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {canadian.RoleName.ljust(50)}", 2, 2))
@@ -299,6 +256,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(canadian.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {canadian.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1327", x=140, y=280, w=4, h=10)
     for irregularMilitia in irregularMilitia:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {irregularMilitia.RoleName.ljust(50)}", 2, 2))
@@ -315,6 +274,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(irregularMilitia.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {irregularMilitia.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1328", x=140, y=280, w=4, h=10)
     for middleEasternAlliance in middleEasternAlliance:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {middleEasternAlliance.RoleName.ljust(50)}", 2, 2))
@@ -331,6 +292,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(middleEasternAlliance.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {middleEasternAlliance.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1329", x=140, y=280, w=4, h=10)
     for panAsia in panAsia:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {panAsia.RoleName.ljust(50)}", 2, 2))
@@ -347,6 +310,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(panAsia.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {panAsia.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1330", x=140, y=280, w=4, h=10)
     for russianGroundForces in russianGroundForces:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {russianGroundForces.RoleName.ljust(50)}", 2, 2))
@@ -363,6 +328,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(russianGroundForces.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {panAsia.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1331", x=140, y=280, w=4, h=10)
     for unitedStatesArmy in unitedStatesArmy:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {unitedStatesArmy.RoleName.ljust(50)}", 2, 2))
@@ -379,6 +346,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(unitedStatesArmy.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {unitedStatesArmy.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1331", x=140, y=280, w=4, h=10)
     for unitedStatesArmy in unitedStatesArmy:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {unitedStatesArmy.RoleName.ljust(50)}", 2, 2))
@@ -395,6 +364,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(unitedStatesArmy.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {unitedStatesArmy.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1332", x=140, y=280, w=4, h=10)
     for unitedStatesMarineCore in unitedStatesMarineCore:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {unitedStatesArmy.RoleName.ljust(50)}", 2, 2))
@@ -411,6 +382,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(unitedStatesArmy.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {unitedStatesArmy.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1333", x=140, y=280, w=4, h=10)
     for british in britishs:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {british.RoleName.ljust(50)}", 2, 2))
@@ -427,6 +400,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(british.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {british.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1334", x=140, y=280, w=4, h=10)
     for insurgent in insurgents:
         line.append(pdf.cell(200, 8, f" ", 0, 1))
         line.append(pdf.cell(200, 8, f"ROLE NAME: {insurgent.RoleName.ljust(50)}", 2, 2))
@@ -443,6 +418,8 @@ def allReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(insurgent.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {insurgent.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+        pdf.set_fill_color(0, 0, 0)
+        pdf.interleaved2of5("1335", x=140, y=280, w=4, h=10)
 
     pdf.output('All-Factions-Report.pdf', 'F')
     return FileResponse(open('All-Factions-Report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
@@ -451,15 +428,19 @@ def britishReport(request):
 
     pdf = FPDF('P', 'mm', 'A4')
     pdf.add_page()
-    pdf.set_font('helvetica', 'B', 16)
+    pdf.image("https://storage.googleapis.com/skr-api/SKR.png", 180, 0, 25)
+    pdf.set_font('helvetica', 'B', 20)
+    pdf.set_margin(1)
+    pdf.set_author="SquadKitResearch"
+    pdf.set_lang="en-US"
+    pdf.set_auto_page_break=True
     pdf.cell(40, 10, 'SquadKitResearch Automatically Generated PDF Reports',0,1)
     pdf.cell(40, 10, 'INSIDE USE ONLY',0,1)
     pdf.cell(40, 10, 'All British Roles',0,1)
     pdf.cell(40, 10, '',0,1)
     pdf.set_font('helvetica', '', 12)
-    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'ALL FACTIONS'.rjust(40)}", 0, 1)
-    pdf.line(10, 50, 190, 50)
-    pdf.line(10, 58, 190, 58)
+    pdf.set_fill_color(200, 220, 255)
+    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'British FACTION'.rjust(40)}", 0, 1, fill=True, align='L')
     britishs = British.objects.all()
     line = []
     for british in britishs:
@@ -478,6 +459,8 @@ def britishReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(british.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {british.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+    pdf.set_fill_color(0, 0, 0)
+    pdf.interleaved2of5("1336", x=140, y=280, w=4, h=10)
    
     pdf.output('British-Report.pdf', 'F')
     return FileResponse(open('British-Report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
@@ -486,15 +469,22 @@ def insurgentReport(request):
 
     pdf = FPDF('P', 'mm', 'A4')
     pdf.add_page()
-    pdf.set_font('helvetica', 'B', 16)
+    pdf.image("https://storage.googleapis.com/skr-api/SKR.png", 180, 0, 25)
+    pdf.set_font('helvetica', 'B', 20)
+    pdf.set_margin(1)
+    pdf.set_author="SquadKitResearch"
+    pdf.set_lang="en-US"
+    pdf.set_auto_page_break=True
     pdf.cell(40, 10, 'SquadKitResearch Automatically Generated PDF Reports',0,1)
     pdf.cell(40, 10, 'INSIDE USE ONLY',0,1)
     pdf.cell(40, 10, 'All Insurgent Roles',0,1)
     pdf.cell(40, 10, '',0,1)
     pdf.set_font('helvetica', '', 12)
-    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'ALL FACTIONS'.rjust(40)}", 0, 1)
-    pdf.line(10, 50, 190, 50)
-    pdf.line(10, 58, 190, 58)
+    pdf.set_fill_color(200, 220, 255)
+    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'Insurgent FACTION'.rjust(40)}", 0, 1, fill=True, align='L')
+    
+    # pdf.line(0, 61, 210, 61)
+    # pdf.line(0, 71, 210, 71)
     insurgents = Insurgent.objects.all()
     line = []
     for insurgent in insurgents:
@@ -516,7 +506,8 @@ def insurgentReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(insurgent.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {insurgent.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
-   
+    pdf.set_fill_color(0, 0, 0)
+    pdf.interleaved2of5("1337", x=140, y=280, w=4, h=10)
     pdf.output('Insurgent-Report.pdf', 'F')
     return FileResponse(open('Insurgent-Report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
 
@@ -524,15 +515,19 @@ def australianReport(request):
 
     pdf = FPDF('P', 'mm', 'A4')
     pdf.add_page()
-    pdf.set_font('helvetica', 'B', 16)
+    pdf.image("https://storage.googleapis.com/skr-api/SKR.png", 180, 0, 25)
+    pdf.set_font('helvetica', 'B', 20)
+    pdf.set_margin(1)
+    pdf.set_author="SquadKitResearch"
+    pdf.set_lang="en-US"
+    pdf.set_auto_page_break=True
     pdf.cell(40, 10, 'SquadKitResearch Automatically Generated PDF Reports',0,1)
     pdf.cell(40, 10, 'INSIDE USE ONLY',0,1)
     pdf.cell(40, 10, 'All Australian Roles',0,1)
     pdf.cell(40, 10, '',0,1)
     pdf.set_font('helvetica', '', 12)
-    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'ALL FACTIONS'.rjust(40)}", 0, 1)
-    pdf.line(10, 50, 190, 50)
-    pdf.line(10, 58, 190, 58)
+    pdf.set_fill_color(200, 220, 255)
+    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'Australian FACTION'.rjust(40)}", 0, 1, fill=True, align='L')
     australians = AustralianArmy.objects.all()
     line = []
     for australian in australians:
@@ -551,6 +546,8 @@ def australianReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(australian.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {australian.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+    pdf.set_fill_color(0, 0, 0)
+    pdf.interleaved2of5("1338", x=120, y=130, w=4, h=10)
    
     pdf.output('Australian-Report.pdf', 'F')
     return FileResponse(open('Australian-Report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
@@ -559,15 +556,19 @@ def canadianReport(request):
 
     pdf = FPDF('P', 'mm', 'A4')
     pdf.add_page()
-    pdf.set_font('helvetica', 'B', 16)
+    pdf.image("https://storage.googleapis.com/skr-api/SKR.png", 180, 0, 25)
+    pdf.set_font('helvetica', 'B', 20)
+    pdf.set_margin(1)
+    pdf.set_author="SquadKitResearch"
+    pdf.set_lang="en-US"
+    pdf.set_auto_page_break=True
     pdf.cell(40, 10, 'SquadKitResearch Automatically Generated PDF Reports',0,1)
     pdf.cell(40, 10, 'INSIDE USE ONLY',0,1)
     pdf.cell(40, 10, 'All Canadian Roles',0,1)
     pdf.cell(40, 10, '',0,1)
     pdf.set_font('helvetica', '', 12)
-    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'ALL FACTIONS'.rjust(40)}", 0, 1)
-    pdf.line(10, 50, 190, 50)
-    pdf.line(10, 58, 190, 58)
+    pdf.set_fill_color(200, 220, 255)
+    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'Canadian FACTION'.rjust(40)}", 0, 1, fill=True, align='L')
     canadians = CanadianArmy.objects.all()
     line = []
     for canadian in canadians:
@@ -586,6 +587,8 @@ def canadianReport(request):
         line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(canadian.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f"KNIFE: {canadian.Knife.ljust(1)}", 0, 1))
         line.append(pdf.cell(200, 8, f" ", 0, 1))
+    pdf.set_fill_color(0, 0, 0)
+    pdf.interleaved2of5("1339", x=120, y=130, w=4, h=10)
    
     pdf.output('Canadian-Report.pdf', 'F')
     return FileResponse(open('Canadian-Report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
