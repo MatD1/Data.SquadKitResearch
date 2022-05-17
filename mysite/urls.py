@@ -19,8 +19,11 @@ from myapi import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('generate', views.index),
     path('british-report', views.britishReport),
-    path('report', views.report),
+    path('insurgent-report', views.insurgentReport),
+    path('australian-report', views.australianReport),
+    path('canadian-report', views.canadianReport),
+    path('report', views.allReport),
     path('api/', include('myapi.urls')),
 ]
