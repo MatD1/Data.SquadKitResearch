@@ -14,7 +14,7 @@ class Post(models.Model):
         
 class Alerts(models.Model):
     name = models.CharField(max_length=30)
-    body = models.TextField(max_length=200)
+    body = models.TextField(max_length=600)
     createdat = models.DateTimeField(datetime.now)
 
     def __str__(self):
