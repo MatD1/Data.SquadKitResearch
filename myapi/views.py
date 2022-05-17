@@ -1,7 +1,3 @@
-from encodings import search_function
-from http.client import HTTPResponse
-from multiprocessing import context
-from unicodedata import name
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
@@ -16,12 +12,6 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.enums import TA_JUSTIFY, TA_CENTER
-from textwrap import wrap
-
-styles = getSampleStyleSheet()
 
 
 
