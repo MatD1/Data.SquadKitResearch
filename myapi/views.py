@@ -163,7 +163,7 @@ def british_pdf(request):
         lines.append(" "),
         lines.append(british.SecondaryWeapon),
         lines.append(" "),
-        lines.append(british.SecondaryWeaponSights),
+        lines.append(british.c),
         lines.append(" "),
         lines.append(british.SecondaryWeaponFiringModes),
         lines.append(" "),
@@ -228,6 +228,41 @@ def report(request):
     pdf.line(10, 165, 190, 165)
     for british in britishs:
         line.append(pdf.cell(200, 8, f"{british.PrimaryFiringModes.ljust(30)} {str(british.SecondaryWeaponFiringModes).rjust(40)}", 0, 1)),
+    pdf.output('report.pdf', 'F')
+    return FileResponse(open('report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
+
+
+def britishReport(request):
+
+    pdf = FPDF('P', 'mm', 'A4')
+    pdf.add_page()
+    pdf.set_font('helvetica', 'B', 16)
+    pdf.cell(40, 10, 'SquadKitResearch Automatically Generated PDF Files',0,1)
+    pdf.cell(40, 10, 'INSIDE USE ONLY',0,1)
+    pdf.cell(40, 10, '',0,1)
+    pdf.set_font('helvetica', '', 12)
+    pdf.cell(210, 10, f"{'Role Information'.ljust(30)} {'Faction'.rjust(40)}", 0, 1)
+    pdf.line(10, 40, 190, 40)
+    pdf.line(10, 48, 190, 48)
+    britishs = British.objects.all()
+    line = []
+    for british in britishs:
+        line.append(pdf.cell(200, 8, f" ", 0, 1))
+        line.append(pdf.cell(200, 8, f"ROLE NAME: {british.RoleName.ljust(50)}", 2, 2))
+        line.append(pdf.cell(200, 8, f"FACTION: {british.faction.rjust(1)}", 0, 1))
+        line.append(pdf.cell(200, 8, f"PRIMARY WEAPON: {british.PrimaryWeapon.ljust(1)}", 0, 1))
+        line.append(pdf.cell(200, 8, f"PRIMARY WEAPON SIGHTS: {british.PrimaryWeaponSights.rjust(1)}", 0, 1))
+        line.append(pdf.cell(200, 8, f"PRIMARY WEAPON FIRING MODES: {british.PrimaryFiringModes.ljust(1)}", 0, 1))
+        line.append(pdf.cell(200, 8, f"PRIMARY MAG AMOUNT: {str(british.PrimaryMagazineAmount).rjust(1)}", 0, 1))
+        line.append(pdf.cell(200, 8, f"PIMARY ROUNDS PER MAG AMOUNT: {str(british.PrimaryMagazineRoundAmount).ljust(1)}", 0, 1))
+        line.append(pdf.cell(200, 8, f"SECONDARY WEAPON: {british.SecondaryWeapon.ljust(1)}", 0, 1))
+        line.append(pdf.cell(200, 8, f"SECONDARY WEAPON SIGHTS: {british.SecondaryWeaponSights.rjust(1)}", 0, 1))
+        line.append(pdf.cell(200, 8, f"SECONDARY WEAPON FIRING MODES: {british.SecondaryWeaponFiringModes.ljust(1)} ", 0, 1))
+        line.append(pdf.cell(200, 8, f"SECONDARY WEAPON MAG AMOUNT: {str(british.SecondaryWeaponMagAmount).rjust(1)} ", 0, 1))
+        line.append(pdf.cell(200, 8, f"SECONDARY ROUNDS PER MAG AMOUNT: {str(british.SecondaryWeaponMagRoundAmount).ljust(1)}", 0, 1))
+        line.append(pdf.cell(200, 8, f"KNIFE: {british.Knife.ljust(1)}", 0, 1))
+        line.append(pdf.cell(200, 8, f" ", 0, 1))
+   
     pdf.output('report.pdf', 'F')
     return FileResponse(open('report.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
 

@@ -20,7 +20,7 @@ from myapi import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('british-report', views.british_pdf),
+    path('british-report', views.britishReport),
     path('report', views.report),
     path('api/', include('myapi.urls')),
 ]
