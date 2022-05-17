@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from myapi import views
 
+admin.sites.AdminSite.site_header = 'SquadKitResearch Administration'
+admin.sites.AdminSite.site_title = 'SquadKitResearch'
+admin.sites.AdminSite.index_title = 'SquadKitResearch index'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('generate', views.genReport),
