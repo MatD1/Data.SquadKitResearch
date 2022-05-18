@@ -1,6 +1,7 @@
 import datetime
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 from rest_framework import viewsets
 from .serializers import AlertsSerializer, AustralianArmySerializer, BritishSerializer, CanadianArmySerializer, InsurgentSerializer, IrregularMilitiaSerializer, MiddleEasterAllianceSerializer, PanAsiaSerializer, PostSerializer, RussianGroundForcesSerializer, UnitedStatesArmySerializer, UnitedStatesMarineCoreSerializer
 from .models import Alerts, AustralianArmy, British, CanadianArmy, IrregularMilitia, Post, Insurgent, MiddleEasternAlliance, PanAsia, RussianGroundForces, UnitedStatesArmy, UnitedStatesMarineCore
@@ -29,149 +30,161 @@ def genReport(request):
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('name')
     serializer_class = PostSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['name', 'id']
     filterset_fields = ['name', 'id']
+    order_fields = ['id']
 
 class AlertsViewSet(viewsets.ModelViewSet):
     queryset = Alerts.objects.all().order_by('name')
     serializer_class = AlertsSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['name', 'id']
     filterset_fields = ['name', 'id']
+    order_fields = ['id']
 
 class InsurgentViewSet(viewsets.ModelViewSet):
     queryset = Insurgent.objects.all().order_by('id')
     serializer_class = InsurgentSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
     filterset_fields = ['RoleName', 'id']
+    order_fields = ['id']
 
 class BritishViewSet(viewsets.ModelViewSet):
     queryset = British.objects.all().order_by('id')
     serializer_class = BritishSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
     filterset_fields = ['RoleName', 'id']
+    order_fields = ['id']
 
 class AustralianArmyViewSet(viewsets.ModelViewSet):
     queryset = AustralianArmy.objects.all().order_by('id')
     serializer_class = AustralianArmySerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
     filterset_fields = ['RoleName', 'id']
+    order_fields = ['id']
 
 class CanadianArmyViewSet(viewsets.ModelViewSet):
     queryset = CanadianArmy.objects.all().order_by('id')
     serializer_class = CanadianArmySerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
     filterset_fields = ['RoleName', 'id']
+    order_fields = ['id']
 
 class IrregularMilitiaViewSet(viewsets.ModelViewSet):
     queryset = IrregularMilitia.objects.all().order_by('id')
     serializer_class = IrregularMilitiaSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
     filterset_fields = ['RoleName', 'id']
+    order_fields = ['id']
 
 class MiddleEasternAllianceViewSet(viewsets.ModelViewSet):
     queryset = MiddleEasternAlliance.objects.all().order_by('id')
     serializer_class = MiddleEasterAllianceSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
     filterset_fields = ['RoleName', 'id']
+    order_fields = ['id']
 
 class PanAsiaViewSet(viewsets.ModelViewSet):
     queryset = PanAsia.objects.all().order_by('id')
     serializer_class = PanAsiaSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
     filterset_fields = ['RoleName', 'id']
+    order_fields = ['id']
 
 class RussianGroundForcesViewSet(viewsets.ModelViewSet):
     queryset = RussianGroundForces.objects.all().order_by('id')
     serializer_class = RussianGroundForcesSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
     filterset_fields = ['RoleName', 'id']
+    order_fields = ['id']
 
 class UnitedStatesArmyViewSet(viewsets.ModelViewSet):
     queryset = UnitedStatesArmy.objects.all().order_by('id')
     serializer_class = UnitedStatesArmySerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
     filterset_fields = ['RoleName', 'id']
+    order_fields = ['id']
 
 class UnitedStatesMarineCoreViewSet(viewsets.ModelViewSet):
     queryset = UnitedStatesMarineCore.objects.all().order_by('id')
     serializer_class = UnitedStatesMarineCoreSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
     filterset_fields = ['RoleName', 'id']
+    order_fields = ['id']
 
 # Generate PDF
-def british_pdf(request):
-    # Create bytestream buffer
-    buf = io.BytesIO()
-    # Create Canvas
-    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
-    # Create Text Object
-    textob = c.beginText()
-    textob.setTextOrigin(inch, inch)
-    textob.setFont("Helvetica", 14)
-    britishs = British.objects.all()
-    # Create blank list
-    lines = [
-        "SquadKitResearch Team Development Role PDF's \n"
-        " PRIVATE USE "
-    ]
+# def british_pdf(request):
+#     # Create bytestream buffer
+#     buf = io.BytesIO()
+#     # Create Canvas
+#     c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+#     # Create Text Object
+#     textob = c.beginText()
+#     textob.setTextOrigin(inch, inch)
+#     textob.setFont("Helvetica", 14)
+#     britishs = British.objects.all()
+#     # Create blank list
+#     lines = [
+#         "SquadKitResearch Team Development Role PDF's \n"
+#         " PRIVATE USE "
+#     ]
 
-    for british in britishs:
-        lines.append(" ")
-        lines.append("---------------------------------------------------------------------------------------- ")
-        lines.append(" ")
-        lines.append("/n")
-        lines.append("ROLE NAME: " + british.RoleName),
-        lines.append(" "),
-        lines.append("FACTION: " +british.faction),
-        lines.append(" "),
-        lines.append(british.PrimaryWeapon),
-        lines.append(" "),
-        lines.append(british.PrimaryWeaponSights),
-        lines.append(" "),
-        lines.append(british.PrimaryFiringModes),
-        lines.append(" "),
-        lines.append(str(british.PrimaryMagazineAmount)),
-        lines.append(" "),
-        lines.append(str(british.PrimaryMagazineRoundAmount)),
-        lines.append(" "),
-        lines.append(british.SecondaryWeapon),
-        lines.append(" "),
-        lines.append(british.c),
-        lines.append(" "),
-        lines.append(british.SecondaryWeaponFiringModes),
-        lines.append(" "),
-        lines.append(str(british.SecondaryWeaponMagAmount)),
-        lines.append(" "),
-        lines.append(str(british.SecondaryWeaponMagRoundAmount)),
-        lines.append(" "),
-        lines.append(british.Knife),
-        lines.append(" "),
-        lines.append(" "),
+#     for british in britishs:
+#         lines.append(" ")
+#         lines.append("---------------------------------------------------------------------------------------- ")
+#         lines.append(" ")
+#         lines.append("/n")
+#         lines.append("ROLE NAME: " + british.RoleName),
+#         lines.append(" "),
+#         lines.append("FACTION: " +british.faction),
+#         lines.append(" "),
+#         lines.append(british.PrimaryWeapon),
+#         lines.append(" "),
+#         lines.append(british.PrimaryWeaponSights),
+#         lines.append(" "),
+#         lines.append(british.PrimaryFiringModes),
+#         lines.append(" "),
+#         lines.append(str(british.PrimaryMagazineAmount)),
+#         lines.append(" "),
+#         lines.append(str(british.PrimaryMagazineRoundAmount)),
+#         lines.append(" "),
+#         lines.append(british.SecondaryWeapon),
+#         lines.append(" "),
+#         lines.append(british.c),
+#         lines.append(" "),
+#         lines.append(british.SecondaryWeaponFiringModes),
+#         lines.append(" "),
+#         lines.append(str(british.SecondaryWeaponMagAmount)),
+#         lines.append(" "),
+#         lines.append(str(british.SecondaryWeaponMagRoundAmount)),
+#         lines.append(" "),
+#         lines.append(british.Knife),
+#         lines.append(" "),
+#         lines.append(" "),
 
-    # Loop
-    for line in lines:
-        textob.textLine(line)
+#     # Loop
+#     for line in lines:
+#         textob.textLine(line)
         
-    # Finish
-    c.drawText(textob)
-    c.showPage()
-    c.save()
-    buf.seek(0)
+#     # Finish
+#     c.drawText(textob)
+#     c.showPage()
+#     c.save()
+#     buf.seek(0)
 
-    # Return
-    return FileResponse(buf, as_attachment=True, filename="Report.pdf")
+#     # Return
+#     return FileResponse(buf, as_attachment=True, filename="Report.pdf")
 
 def allReport(request):
     
