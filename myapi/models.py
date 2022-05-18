@@ -400,6 +400,7 @@ class UnitedStatesMarineCore(models.Model):
 class Insurgent(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    hasPrimary2 = models.BooleanField(default=False, verbose_name='Has Primary Weapon 2', help_text='Does the role have a second primary weapon?')
     PrimaryWeapon = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeapon_2 = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon #2')
     PrimaryWeaponSights = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Sight')
