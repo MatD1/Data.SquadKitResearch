@@ -1,4 +1,5 @@
 from datetime import datetime
+from tabnanny import verbose
 import uuid
 from django.db import models
 
@@ -24,6 +25,9 @@ class AustralianArmy(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
     UUID = models.UUIDField(default=uuid.uuid4, editable=False )
+    isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
+    isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
+    isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
     PrimaryWeapon = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Sight')
     PrimaryFiringModes = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
@@ -71,6 +75,9 @@ class AustralianArmy(models.Model):
 class CanadianArmy(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
+    isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
+    isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
     PrimaryWeapon = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Sight')
     PrimaryFiringModes = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
@@ -118,6 +125,9 @@ class CanadianArmy(models.Model):
 class IrregularMilitia(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
+    isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
+    isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
     PrimaryWeapon = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Sight')
     PrimaryFiringModes = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
@@ -165,6 +175,9 @@ class IrregularMilitia(models.Model):
 class MiddleEasternAlliance(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
+    isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
+    isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
     PrimaryWeapon = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Sight')
     PrimaryFiringModes = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
@@ -212,6 +225,9 @@ class MiddleEasternAlliance(models.Model):
 class PanAsia(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
+    isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
+    isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
     PrimaryWeapon = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Sight')
     PrimaryFiringModes = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
@@ -259,6 +275,9 @@ class PanAsia(models.Model):
 class RussianGroundForces(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
+    isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
+    isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
     PrimaryWeapon = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Sight')
     PrimaryFiringModes = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
@@ -306,6 +325,9 @@ class RussianGroundForces(models.Model):
 class UnitedStatesArmy(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
+    isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
+    isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
     PrimaryWeapon = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Sight')
     PrimaryFiringModes = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
@@ -353,6 +375,9 @@ class UnitedStatesArmy(models.Model):
 class UnitedStatesMarineCore(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
+    isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
+    isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
     PrimaryWeapon = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Sight')
     PrimaryFiringModes = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
@@ -400,6 +425,9 @@ class UnitedStatesMarineCore(models.Model):
 class Insurgent(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
+    isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
+    isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
     hasPrimary2 = models.BooleanField(default=False, verbose_name='Has Primary Weapon 2', help_text='Does the role have a second primary weapon?')
     PrimaryWeapon = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeapon_2 = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon #2')
@@ -451,6 +479,9 @@ class Insurgent(models.Model):
 class British(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
     faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
+    isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
+    isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
     PrimaryWeapon = models.CharField(max_length=40, default='N/A', verbose_name='Role Primary Weapon')
     PrimaryWeaponSights = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Sight')
     PrimaryFiringModes = models.CharField(max_length=50, default='N/A', verbose_name='Role Primary Weapon Firing Modes')
