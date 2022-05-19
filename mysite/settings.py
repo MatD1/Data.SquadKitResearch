@@ -170,7 +170,7 @@ sentry_sdk.init(
 import django_heroku
 django_heroku.settings(locals())
 # Security Settings
-SECURE_HSTS_SECONDS = 3600
+SECURE_HSTS_SECONDS = 31556926000
 SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
