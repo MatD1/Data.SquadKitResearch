@@ -149,6 +149,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://pyapi.squadkitresearch.net',
     'https://pythonapi.herokuapp.com',
     'https://squadkitresearch.net',
+    'http://squadkitresearch.net',
     'http://localhost:3000',
     'https://jovial-conkies-046475.netlify.app',
     'http://jovial-conkies-046475.netlify.app',
@@ -173,7 +174,7 @@ import django_heroku
 django_heroku.settings(locals())
 # Security Settings
 SECURE_HSTS_SECONDS = 31556926000
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
