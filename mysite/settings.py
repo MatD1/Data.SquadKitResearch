@@ -26,7 +26,7 @@ SECRET_KEY = '%#-dh$s)%l917x8wf9o+zwre1ik^z#5f)#i-bdz#9*vtr36818'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000', 'https://squadkitresearch.net', 'squadkitresearch.net']
+ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000', 'https://squadkitresearch.net', 'squadkitresearch.net', 'squadkitresearch.net/api/']
 
 
 # Application definition
@@ -149,7 +149,9 @@ CORS_ALLOWED_ORIGINS = [
     'https://pyapi.squadkitresearch.net',
     'https://pythonapi.herokuapp.com',
     'https://squadkitresearch.net',
+    'https://squadkitresearch.net/api/',
     'http://localhost:3000',
+    'https://squadkitresearch-j4pftxwys-matd1.vercel.app',
 ]
 
 sentry_sdk.init(
