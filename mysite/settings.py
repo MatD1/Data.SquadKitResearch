@@ -26,7 +26,7 @@ SECRET_KEY = '%#-dh$s)%l917x8wf9o+zwre1ik^z#5f)#i-bdz#9*vtr36818'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000', 'https://squadkitresearch.net', 'squadkitresearch.net', 'jovial-conkies-046475.netlify.app']
+ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
 
 # Application definition
@@ -149,10 +149,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://pyapi.squadkitresearch.net',
     'https://pythonapi.herokuapp.com',
     'https://squadkitresearch.net',
-    'http://squadkitresearch.net',
+    'https://squadkitresearch.net/api/',
     'http://localhost:3000',
-    'https://jovial-conkies-046475.netlify.app',
-    'http://jovial-conkies-046475.netlify.app',
 ]
 
 sentry_sdk.init(
@@ -174,7 +172,7 @@ import django_heroku
 django_heroku.settings(locals())
 # Security Settings
 SECURE_HSTS_SECONDS = 31556926000
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
