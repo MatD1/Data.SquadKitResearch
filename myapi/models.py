@@ -23,7 +23,7 @@ class Alerts(models.Model):
 
 class AustralianArmy(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
-    faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    faction = models.CharField(max_length=30, default='N/A', verbose_name='Role Faction')
     UUID = models.UUIDField(default=uuid.uuid4, editable=False )
     isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
     isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
@@ -75,7 +75,7 @@ class AustralianArmy(models.Model):
 
 class CanadianArmy(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
-    faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    faction = models.CharField(max_length=30, default='N/A', verbose_name='Role Faction')
     isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
     isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
     isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
@@ -126,7 +126,7 @@ class CanadianArmy(models.Model):
 
 class IrregularMilitia(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
-    faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    faction = models.CharField(max_length=30, default='N/A', verbose_name='Role Faction')
     isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
     isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
     isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
@@ -177,7 +177,7 @@ class IrregularMilitia(models.Model):
 
 class MiddleEasternAlliance(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
-    faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    faction = models.CharField(max_length=30, default='N/A', verbose_name='Role Faction')
     isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
     isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
     isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
@@ -228,7 +228,7 @@ class MiddleEasternAlliance(models.Model):
 
 class PanAsia(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
-    faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    faction = models.CharField(max_length=30, default='N/A', verbose_name='Role Faction')
     isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
     isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
     isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
@@ -279,7 +279,7 @@ class PanAsia(models.Model):
 
 class RussianGroundForces(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
-    faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    faction = models.CharField(max_length=30, default='N/A', verbose_name='Role Faction')
     isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
     isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
     isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
@@ -330,7 +330,7 @@ class RussianGroundForces(models.Model):
 
 class UnitedStatesArmy(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
-    faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    faction = models.CharField(max_length=30, default='N/A', verbose_name='Role Faction')
     isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
     isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
     isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
@@ -381,7 +381,7 @@ class UnitedStatesArmy(models.Model):
 
 class UnitedStatesMarineCore(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
-    faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    faction = models.CharField(max_length=30, default='N/A', verbose_name='Role Faction')
     isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
     isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
     isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
@@ -432,7 +432,7 @@ class UnitedStatesMarineCore(models.Model):
 
 class Insurgent(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
-    faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    faction = models.CharField(max_length=30, default='N/A', verbose_name='Role Faction')
     isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
     isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
     isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
@@ -487,7 +487,7 @@ class Insurgent(models.Model):
 
 class British(models.Model):
     RoleName = models.CharField(max_length=60, default='N/A', verbose_name='Role Name', unique=True)
-    faction = models.CharField(max_length=20, default='N/A', verbose_name='Role Faction')
+    faction = models.CharField(max_length=30, default='N/A', verbose_name='Role Faction')
     isLeadOrCommand = models.BooleanField(default=False, verbose_name='Is Role Lead or Command?')
     isFireSupport = models.BooleanField(default=False, verbose_name='Is Role Fire Support?')
     isSpecialst = models.BooleanField(default=False, verbose_name='Is Role Specialst?')
