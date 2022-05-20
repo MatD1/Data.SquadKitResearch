@@ -149,7 +149,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://pyapi.squadkitresearch.net',
     'https://pythonapi.herokuapp.com',
     'https://squadkitresearch.net',
-    'https://squadkitresearch.net/api/',
+    'https://squadkitresearch.net',
     'http://localhost:3000',
 ]
 
