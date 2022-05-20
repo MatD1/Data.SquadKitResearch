@@ -48,7 +48,7 @@ class InsurgentViewSet(viewsets.ModelViewSet):
     serializer_class = InsurgentSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst']
+    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst', 'isSquadRole']
     order_fields = ['id']
 
 class BritishViewSet(viewsets.ModelViewSet):
@@ -56,7 +56,7 @@ class BritishViewSet(viewsets.ModelViewSet):
     serializer_class = BritishSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst']
+    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst', 'isSquadRole']
     order_fields = ['id']
 
 class AustralianArmyViewSet(viewsets.ModelViewSet):
@@ -64,7 +64,7 @@ class AustralianArmyViewSet(viewsets.ModelViewSet):
     serializer_class = AustralianArmySerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst']
+    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst', 'isSquadRole']
     order_fields = ['id']
 
 class CanadianArmyViewSet(viewsets.ModelViewSet):
@@ -72,7 +72,7 @@ class CanadianArmyViewSet(viewsets.ModelViewSet):
     serializer_class = CanadianArmySerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst']
+    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst', 'isSquadRole']
     order_fields = ['id']
 
 class IrregularMilitiaViewSet(viewsets.ModelViewSet):
@@ -80,7 +80,7 @@ class IrregularMilitiaViewSet(viewsets.ModelViewSet):
     serializer_class = IrregularMilitiaSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst']
+    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst', 'isSquadRole']
     order_fields = ['id']
 
 class MiddleEasternAllianceViewSet(viewsets.ModelViewSet):
@@ -88,7 +88,7 @@ class MiddleEasternAllianceViewSet(viewsets.ModelViewSet):
     serializer_class = MiddleEasterAllianceSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst']
+    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst', 'isSquadRole']
     order_fields = ['id']
 
 class PanAsiaViewSet(viewsets.ModelViewSet):
@@ -96,7 +96,7 @@ class PanAsiaViewSet(viewsets.ModelViewSet):
     serializer_class = PanAsiaSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst']
+    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst', 'isSquadRole']
     order_fields = ['id']
 
 class RussianGroundForcesViewSet(viewsets.ModelViewSet):
@@ -104,7 +104,7 @@ class RussianGroundForcesViewSet(viewsets.ModelViewSet):
     serializer_class = RussianGroundForcesSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst']
+    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst', 'isSquadRole']
     order_fields = ['id']
 
 class UnitedStatesArmyViewSet(viewsets.ModelViewSet):
@@ -112,7 +112,7 @@ class UnitedStatesArmyViewSet(viewsets.ModelViewSet):
     serializer_class = UnitedStatesArmySerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst']
+    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst', 'isSquadRole']
     order_fields = ['id']
 
 class UnitedStatesMarineCoreViewSet(viewsets.ModelViewSet):
@@ -120,7 +120,7 @@ class UnitedStatesMarineCoreViewSet(viewsets.ModelViewSet):
     serializer_class = UnitedStatesMarineCoreSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['RoleName', 'id']
-    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst']
+    filterset_fields = ['RoleName', 'id', 'isLeadOrCommand', 'isFireSupport', 'isSpecialst', 'isSquadRole']
     order_fields = ['id']
 
 # Generate PDF
