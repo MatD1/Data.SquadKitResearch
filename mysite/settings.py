@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY =  env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
