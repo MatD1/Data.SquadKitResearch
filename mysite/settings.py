@@ -13,18 +13,22 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 
+import environ
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%#-dh$s)%l917x8wf9o+zwre1ik^z#5f)#i-bdz#9*vtr36818'
+SECRET_KEY =  env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
@@ -135,7 +139,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         #'rest_framework.permissions.DjangoModelPermissions',
-        "rest_framework_api_key.permissions.HasAPIKey",
+        #"rest_framework_api_key.permissions.HasAPIKey",
         
 
     ],
@@ -148,7 +152,6 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     'https://pyapi.squadkitresearch.net',
     'https://pythonapi.herokuapp.com',
-    'https://squadkitresearch.net',
     'https://squadkitresearch.net',
     'http://localhost:3000',
 ]
@@ -167,16 +170,21 @@ sentry_sdk.init(
     send_default_pii=True
 )
 
+
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
 # Security Settings
-SECURE_HSTS_SECONDS = 31556926000
+# SECURE_HSTS_SECONDS = 3600
 SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+
+#Thousands Seperator
+USE_THOUSAND_SEPARATOR = True
+
 # Django admin enviroment Notice
 ENVIRONMENT_NAME = "Production server"
 ENVIRONMENT_COLOR = "#13E55F"
