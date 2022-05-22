@@ -22,3 +22,4 @@ fpdf2==2.5.4
 colorama==0.4.4
 phonenumbers==8.12.48
 qrcode==7.3.1
+django-environ==0.8.1
