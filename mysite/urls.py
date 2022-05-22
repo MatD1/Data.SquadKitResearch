@@ -22,7 +22,7 @@ admin.sites.AdminSite.site_title = 'SquadKitResearch'
 admin.sites.AdminSite.index_title = 'SquadKitResearch index'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('Dashboard/', admin.site.urls),
     path('generate', views.genReport),
     path('', views.index),
     path('british-report', views.britishReport),

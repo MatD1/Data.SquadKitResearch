@@ -8,7 +8,10 @@ from django.db import models
 class Post(models.Model):
     name = models.CharField(max_length=50)
     body = models.TextField()
-    createdat = models.DateTimeField(datetime.now, auto_now=True)
+    createdAt = models.DateTimeField(datetime.now, auto_now=True)
+
+    class Meta:
+      verbose_name_plural = "Posts"
 
     def __str__(self):
         return self.name
@@ -16,7 +19,10 @@ class Post(models.Model):
 class Alerts(models.Model):
     name = models.CharField(max_length=50)
     body = models.TextField(max_length=600)
-    createdat = models.DateTimeField(datetime.now)
+    createdAt = models.DateTimeField(datetime.now, auto_now=True)
+
+    class Meta:
+      verbose_name_plural = "Alerts"
 
     def __str__(self):
         return self.name
@@ -70,6 +76,9 @@ class AustralianArmy(models.Model):
     sixthSlot_4 = models.CharField(max_length=50, default='N/A', verbose_name='Sixth Equipment Slot #5')
     sixthSlot_4_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #5 Amount' )
 
+    class Meta:
+      verbose_name_plural = "Australian Army"
+
     def __str__(self):
         return self.RoleName
 
@@ -120,6 +129,9 @@ class CanadianArmy(models.Model):
     sixthSlot_3_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #4 Amount' )
     sixthSlot_4 = models.CharField(max_length=50, default='N/A', verbose_name='Sixth Equipment Slot #5')
     sixthSlot_4_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #5 Amount' )
+
+    class Meta:
+      verbose_name_plural = "Canadian Army"
 
     def __str__(self):
         return self.RoleName
@@ -172,6 +184,9 @@ class IrregularMilitia(models.Model):
     sixthSlot_4 = models.CharField(max_length=50, default='N/A', verbose_name='Sixth Equipment Slot #5')
     sixthSlot_4_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #5 Amount' )
 
+    class Meta:
+      verbose_name_plural = "Irregular Militia"
+
     def __str__(self):
         return self.RoleName
 
@@ -222,6 +237,9 @@ class MiddleEasternAlliance(models.Model):
     sixthSlot_3_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #4 Amount' )
     sixthSlot_4 = models.CharField(max_length=50, default='N/A', verbose_name='Sixth Equipment Slot #5')
     sixthSlot_4_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #5 Amount' )
+
+    class Meta:
+      verbose_name_plural = "Middle Eastern Alliance"
 
     def __str__(self):
         return self.RoleName
@@ -274,6 +292,9 @@ class PanAsia(models.Model):
     sixthSlot_4 = models.CharField(max_length=50, default='N/A', verbose_name='Sixth Equipment Slot #5')
     sixthSlot_4_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #5 Amount' )
 
+    class Meta:
+      verbose_name_plural = "Pan-Asia"
+
     def __str__(self):
         return self.RoleName
 
@@ -324,6 +345,9 @@ class RussianGroundForces(models.Model):
     sixthSlot_3_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #4 Amount' )
     sixthSlot_4 = models.CharField(max_length=50, default='N/A', verbose_name='Sixth Equipment Slot #5')
     sixthSlot_4_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #5 Amount' )
+
+    class Meta:
+      verbose_name_plural = "Russian Ground Forces"
 
     def __str__(self):
         return self.RoleName
@@ -376,6 +400,9 @@ class UnitedStatesArmy(models.Model):
     sixthSlot_4 = models.CharField(max_length=50, default='N/A', verbose_name='Sixth Equipment Slot #5')
     sixthSlot_4_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #5 Amount' )
 
+    class Meta:
+      verbose_name_plural = "United States Army"
+
     def __str__(self):
         return self.RoleName
 
@@ -426,6 +453,9 @@ class UnitedStatesMarineCore(models.Model):
     sixthSlot_3_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #4 Amount' )
     sixthSlot_4 = models.CharField(max_length=50, default='N/A', verbose_name='Sixth Equipment Slot #5')
     sixthSlot_4_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #5 Amount' )
+
+    class Meta:
+      verbose_name_plural = "United States Marine Core"
 
     def __str__(self):
         return self.RoleName
@@ -482,6 +512,9 @@ class Insurgent(models.Model):
     sixthSlot_4 = models.CharField(max_length=50, default='N/A', verbose_name='Sixth Equipment Slot #5')
     sixthSlot_4_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #5 Amount' )
 
+    class Meta:
+      verbose_name_plural = "Insurgents"
+
     def __str__(self):
         return self.RoleName
 
@@ -532,6 +565,9 @@ class British(models.Model):
     sixthSlot_3_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #4 Amount' )
     sixthSlot_4 = models.CharField(max_length=50, default='N/A', verbose_name='Sixth Equipment Slot #5')
     sixthSlot_4_Amount = models.PositiveIntegerField(default=0, verbose_name='Sixth Equipment Slot #5 Amount' )
+
+    class Meta:
+      verbose_name_plural = "British"
 
     def __str__(self):
         return self.RoleName
