@@ -8,13 +8,24 @@ from django.db import models
 class Post(models.Model):
     name = models.CharField(max_length=50)
     body = models.TextField()
-    createdAt = models.DateTimeField(datetime.now, auto_now=True)
+    createdat = models.DateTimeField(datetime.now, auto_now=True)
 
     class Meta:
       verbose_name_plural = "Posts"
 
     def __str__(self):
         return self.name
+
+class Changelog(models.Model):
+    UpdateName = models.CharField(max_length=50, verbose_name='Changelog Name')
+    body = models.TextField(verbose_name='Changelog details')
+    createdat = models.DateTimeField(datetime.now, auto_now=True)
+
+    class Meta:
+      verbose_name_plural = "Changelogs"
+
+    def __str__(self):
+        return self.UpdateName
         
 class Alerts(models.Model):
     name = models.CharField(max_length=50)

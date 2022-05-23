@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework import viewsets
-from .serializers import AlertsSerializer, AustralianArmySerializer, BritishSerializer, CanadianArmySerializer, InsurgentSerializer, IrregularMilitiaSerializer, MiddleEasterAllianceSerializer, PanAsiaSerializer, PostSerializer, RussianGroundForcesSerializer, UnitedStatesArmySerializer, UnitedStatesMarineCoreSerializer
-from .models import Alerts, AustralianArmy, British, CanadianArmy, IrregularMilitia, Post, Insurgent, MiddleEasternAlliance, PanAsia, RussianGroundForces, UnitedStatesArmy, UnitedStatesMarineCore
+from .serializers import AlertsSerializer, AustralianArmySerializer, BritishSerializer, CanadianArmySerializer, ChangelogSerializer, InsurgentSerializer, IrregularMilitiaSerializer, MiddleEasterAllianceSerializer, PanAsiaSerializer, PostSerializer, RussianGroundForcesSerializer, UnitedStatesArmySerializer, UnitedStatesMarineCoreSerializer
+from .models import Alerts, AustralianArmy, British, CanadianArmy, Changelog, IrregularMilitia, Post, Insurgent, MiddleEasternAlliance, PanAsia, RussianGroundForces, UnitedStatesArmy, UnitedStatesMarineCore
 
 
 # Genereating PDF's
@@ -33,6 +33,14 @@ class PostViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['name', 'id']
     filterset_fields = ['name', 'id']
+    order_fields = ['id']
+
+class ChangelogViewSet(viewsets.ModelViewSet):
+    queryset = Changelog.objects.all().order_by('UpdateName')
+    serializer_class = ChangelogSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['UpdateName', 'id']
+    filterset_fields = ['UpdateName', 'id']
     order_fields = ['id']
 
 class AlertsViewSet(viewsets.ModelViewSet):
