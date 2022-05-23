@@ -30,7 +30,7 @@ SECRET_KEY =  env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000', 'https://squadkitresearch.net', 'squadkitresearch.net']
+ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000' 'skrpythonapi.herokuapp.com', 'https://skrpythonapi.herokuapp.com', 'https://pyapi.squadkitresearch.net', 'http://localhost:3000', 'localhost:3000', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
 
 # Application definition
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "rest_framework_api_key",
     "django_filters",
     'corsheaders',
+    "sslserver",
 ]
 
 MIDDLEWARE = [
@@ -140,13 +141,13 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         #'rest_framework.permissions.DjangoModelPermissions',
         #"rest_framework_api_key.permissions.HasAPIKey",
-        
+
 
     ],
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend'
     ],
-    
+
 }
 
 CORS_ALLOWED_ORIGINS = [
@@ -170,6 +171,13 @@ sentry_sdk.init(
     send_default_pii=True
 )
 
+# Caching
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': env('REDIS'),
+    }
+}
 
 # Configure Django App for Heroku.
 import django_heroku
@@ -181,6 +189,8 @@ SESSION_COOKIE_SECURE = env('SESSION_COOKIE_SECURE')
 CSRF_COOKIE_SECURE = env('CSRF_COOKIE_SECURE')
 SECURE_HSTS_INCLUDE_SUBDOMAINS = env('SECURE_HSTS_INCLUDE_SUBDOMAINS')
 SECURE_HSTS_PRELOAD = env('SECURE_HSTS_PRELOAD')
+# CORS
+CORS_ALLOW_CREDENTIALS = False
 
 #Thousands Seperator
 USE_THOUSAND_SEPARATOR = True
