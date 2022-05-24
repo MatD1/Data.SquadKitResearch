@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapi.apps.MyapiConfig',
+    "Weapons",
     'rest_framework',
     "rest_framework_api_key",
     "django_filters",

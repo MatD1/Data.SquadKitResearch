@@ -1,4 +1,3 @@
-from dataclasses import field
 from rest_framework import serializers
 from .models import Alerts, AustralianArmy, British, CanadianArmy, Changelog, IrregularMilitia, MiddleEasternAlliance, PanAsia, Post, Insurgent, RussianGroundForces, UnitedStatesArmy, UnitedStatesMarineCore
 

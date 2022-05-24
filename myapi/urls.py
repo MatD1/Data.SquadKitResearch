@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 from . import views
-
+from Weapons.views import AustralianArmyWeaponsViewSet
 router = routers.DefaultRouter()
 router.register(r'posts', views.PostViewSet),
 router.register(r'changelog', views.ChangelogViewSet),
@@ -16,10 +16,11 @@ router.register(r'pan-asia', views.PanAsiaViewSet),
 router.register(r'russian-ground-forces', views.RussianGroundForcesViewSet),
 router.register(r'united-states-army', views.UnitedStatesArmyViewSet),
 router.register(r'united-states-marine-core', views.UnitedStatesMarineCoreViewSet),
+router.register(r'austrlain-army-weapons', AustralianArmyWeaponsViewSet),
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('', include(router.urls)),
+    path('V1/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

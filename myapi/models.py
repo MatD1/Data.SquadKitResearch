@@ -1,5 +1,4 @@
 from datetime import datetime
-from tabnanny import verbose
 import uuid
 from django.db import models
 
