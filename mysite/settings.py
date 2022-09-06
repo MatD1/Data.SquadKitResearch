@@ -163,8 +163,10 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 sentry_sdk.init(
-    dsn="https://bd875a00db0d4de3a0b404bd9b75c3ec@o1247528.ingest.sentry.io/6407493",
-    integrations=[DjangoIntegration()],
+    dsn="https://6bd32a164eea401b9db0603478759a2f@o1247526.ingest.sentry.io/6724676",
+    integrations=[
+        DjangoIntegration(),
+    ],
 
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
