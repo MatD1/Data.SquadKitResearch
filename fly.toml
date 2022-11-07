@@ -1,0 +1,9 @@
+[processes]
+web = "gunicorn mysite.wsgi"
+
+[[services]]
+  processes = ["web"] # this service only applies to the web process
+  http_checks = []
+  internal_port = 8080
+  protocol = "tcp"
+  script_checks = []
