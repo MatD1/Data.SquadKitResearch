@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY =  env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = True #env('DEBUG')
 
 ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000', 'http://localhost:3000', 'localhost:3000','https://web-production-a41d.up.railway.app', 'web-production-a41d.up.railway.app', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
