@@ -13,8 +13,6 @@ import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
-
-env = os.environ
 # reading .env file
 #environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =  env("SECRET_KEY")
+SECRET_KEY =  os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True #env('DEBUG')
@@ -183,7 +181,7 @@ sentry_sdk.init(
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': env('REDIS'),
+        'LOCATION': os.environ['REDIS'],
     }
 }
 
@@ -191,12 +189,12 @@ CACHES = {
 # import django_heroku
 # django_heroku.settings(locals())
 # Security Settings
-SECURE_HSTS_SECONDS = env('SECURE_HSTS_SECONDS')
-SECURE_SSL_REDIRECT = env('SECURE_SSL_REDIRECT')
-SESSION_COOKIE_SECURE = env('SESSION_COOKIE_SECURE')
-CSRF_COOKIE_SECURE = env('CSRF_COOKIE_SECURE')
-SECURE_HSTS_INCLUDE_SUBDOMAINS = env('SECURE_HSTS_INCLUDE_SUBDOMAINS')
-SECURE_HSTS_PRELOAD = env('SECURE_HSTS_PRELOAD')
+SECURE_HSTS_SECONDS = os.environ['SECURE_HSTS_SECONDS']
+SECURE_SSL_REDIRECT = os.environ['SECURE_SSL_REDIRECT']
+SESSION_COOKIE_SECURE = os.environ['SESSION_COOKIE_SECURE']
+CSRF_COOKIE_SECURE = os.environ['CSRF_COOKIE_SECURE']
+SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ['SECURE_HSTS_INCLUDE_SUBDOMAINS']
+SECURE_HSTS_PRELOAD = envos.environ['SECURE_HSTS_PRELOAD']
 # CORS
 CORS_ALLOW_CREDENTIALS = False
 
