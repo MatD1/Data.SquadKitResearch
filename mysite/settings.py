@@ -187,8 +187,8 @@ CACHES = {
 }
 
 # Configure Django App for Heroku.
-import django_heroku
-django_heroku.settings(locals())
+# import django_heroku
+# django_heroku.settings(locals())
 # Security Settings
 SECURE_HSTS_SECONDS = env('SECURE_HSTS_SECONDS')
 SECURE_SSL_REDIRECT = env('SECURE_SSL_REDIRECT')
