@@ -14,7 +14,7 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 # reading .env file
-#environ.Env.read_env()
+#os.environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =  os.environ["SECRET_KEY"]
+SECRET_KEY = '123456789' #os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #env('DEBUG')
+DEBUG = os.environ["DEBUG"]
 
 ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000', '104.196.232.237', 'localhost:3000','railway.squadkitresearch.net', 'web-production-a41d.up.railway.app', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
@@ -34,6 +34,8 @@ ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000', '104.196.232.237', '
 
 INSTALLED_APPS = [
     'django_admin_env_notice',
+    "admin_interface",
+    "colorfield",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -207,6 +209,10 @@ ENVIRONMENT_COLOR = "#13E55F"
 ENVIRONMENT_NAME = "Development server"
 ENVIRONMENT_COLOR = "#F40505"
 ENVIRONMENT_FLOAT = True
+
+# only if django version >= 3.0
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 
 # LOGGING
