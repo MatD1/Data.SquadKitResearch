@@ -1,6 +1,5 @@
 gunicorn
-admin_interface
-colorfield
+django-admin-interface
 sentry-sdk==1.5.12
 django-filter==21.1
 asgiref==3.5.1
