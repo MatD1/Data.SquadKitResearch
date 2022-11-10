@@ -161,21 +161,21 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
-# sentry_sdk.init(
-#     dsn="https://6bd32a164eea401b9db0603478759a2f@o1247526.ingest.sentry.io/6724676",
-#     integrations=[
-#         DjangoIntegration(),
-#     ],
+sentry_sdk.init(
+    dsn="https://781ad52e064e42ee8861b351f928e30f@o1247526.ingest.sentry.io/4504132335828992",
+    integrations=[
+        DjangoIntegration(),
+    ],
 
-#     # Set traces_sample_rate to 1.0 to capture 100%
-#     # of transactions for performance monitoring.
-#     # We recommend adjusting this value in production.
-#     traces_sample_rate=1.0,
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
 
-#     # If you wish to associate users to errors (assuming you are using
-#     # django.contrib.auth) you may enable sending PII data.
-#     send_default_pii=True
-# )
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
 
 # Caching
 CACHES = {
