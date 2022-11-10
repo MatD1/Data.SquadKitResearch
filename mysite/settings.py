@@ -27,7 +27,7 @@ SECRET_KEY = '123456789' #os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ["DEBUG"]
 
-ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000', '104.196.232.237', 'localhost:3000','railway.squadkitresearch.net', 'web-production-a41d.up.railway.app', 'https://squadkitresearch.net', 'squadkitresearch.net']
+ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000', 'localhost:3000','railway.squadkitresearch.net', 'web-production-a41d.up.railway.app', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
 
 # Application definition
