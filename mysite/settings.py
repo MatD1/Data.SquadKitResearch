@@ -34,8 +34,8 @@ ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000', 'localhost:3000','ra
 
 INSTALLED_APPS = [
     'django_admin_env_notice',
-    "admin_interface",
-    "colorfield",
+   # "admin_interface",
+   # "colorfield",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
