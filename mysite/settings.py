@@ -29,6 +29,7 @@ DEBUG = os.environ["DEBUG"]
 
 ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000', 'localhost:3000','railway.squadkitresearch.net', 'https://railway.squadkitresearch.net', 'web-production-a41d.up.railway.app', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
+CSRF_TRUSTED_DOMAINS = os.environ["CSRFDOMAINS"]
 
 # Application definition
 
