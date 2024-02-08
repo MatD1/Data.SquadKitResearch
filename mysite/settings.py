@@ -160,6 +160,7 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     'https://squadkitresearch.net',
+    'https://railway.squadkitresearch.net',
     'http://localhost:3000',
 ]
 
