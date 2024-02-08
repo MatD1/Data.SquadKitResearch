@@ -27,7 +27,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ["DEBUG"]
 
-ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000', 'localhost:3000','railway.squadkitresearch.net', 'web-production-a41d.up.railway.app', 'https://squadkitresearch.net', 'squadkitresearch.net']
+ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000', 'localhost:3000','railway.squadkitresearch.net', 'https://railway.squadkitresearch.net', 'web-production-a41d.up.railway.app', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
 
 # Application definition
@@ -160,6 +160,7 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     'https://squadkitresearch.net',
+    'railway.squadkitresearch.net',
     'https://railway.squadkitresearch.net',
     'http://localhost:3000',
 ]
