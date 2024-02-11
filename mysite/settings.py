@@ -29,6 +29,7 @@ DEBUG = os.environ["DEBUG"]
 
 ALLOWED_HOSTS = ['localhost', 'http://localhost:8000', 'localhost:3000','railway.squadkitresearch.net', 'web-production-a41d.up.railway.app', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
+CSRF_TRUSTED_ORIGINS = ["https://railway.squadkitresearch.net"]
 
 # Application definition
 
@@ -169,6 +170,8 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     'https://squadkitresearch.net',
+    'railway.squadkitresearch.net',
+    'https://railway.squadkitresearch.net',
     'http://localhost:3000',
 ]
 
