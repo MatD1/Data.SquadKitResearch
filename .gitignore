@@ -1,2 +1,11 @@
 .env
 db.sqlite3
+__pycache__/**  */
+myapi/__pycache__/**  
+myapi/migrations/__pycache__/**  
+mysite/__pycache__/**  
+mysite/migrations/__pycache__/**  
+Weapons/__pycache__/**  
+Weapons/migrations/__pycache__/**  
+settings.txt
+settings.py
