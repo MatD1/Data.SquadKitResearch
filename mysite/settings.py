@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
+# import sentry_sdk
+# from sentry_sdk.integrations.django import DjangoIntegration
 from pathlib import Path
 # reading .env file
 #os.environ.Env.read_env()
@@ -27,15 +27,15 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ["DEBUG"]
 
-ALLOWED_HOSTS = ['localhost:8000', 'http://localhost:8000', 'localhost:3000','railway.squadkitresearch.net', 'web-production-a41d.up.railway.app', 'https://squadkitresearch.net', 'squadkitresearch.net']
+ALLOWED_HOSTS = ['localhost', 'http://localhost:8000', 'localhost:3000','railway.squadkitresearch.net', 'web-production-a41d.up.railway.app', 'https://squadkitresearch.net', 'squadkitresearch.net']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'django_admin_env_notice',
-    "admin_interface",
-    "colorfield",
+    #"admin_interface",
+    #"colorfield",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,18 +85,27 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ["PGDATABASE"],
-        'USER': os.environ["PGUSER"],
-        'PASSWORD': os.environ["PGPASSWORD"],
-        'HOST': os.environ["PGHOST"],
-        'PORT': os.environ["PGPORT"],
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+if os.environ.get('DJANGO_ENVIRONMENT') == 'production':
+    # Production database configuration
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ["PGDATABASE"],
+            'USER': os.environ["PGUSER"],
+            'PASSWORD': os.environ["PGPASSWORD"],
+            'HOST': os.environ["PGHOST"],
+            'PORT': os.environ["PGPORT"],
+        }
     }
-}
-
+else:
+    # Development database configuration (using SQLite)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
@@ -163,40 +172,44 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
-sentry_sdk.init(
-    dsn="https://781ad52e064e42ee8861b351f928e30f@o1247526.ingest.sentry.io/4504132335828992",
-    integrations=[
-        DjangoIntegration(),
-    ],
+# sentry_sdk.init(
+#     dsn="https://781ad52e064e42ee8861b351f928e30f@o1247526.ingest.sentry.io/4504132335828992",
+#     integrations=[
+#         DjangoIntegration(),
+#     ],
 
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1.0,
+#     # Set traces_sample_rate to 1.0 to capture 100%
+#     # of transactions for performance monitoring.
+#     # We recommend adjusting this value in production.
+#     traces_sample_rate=1.0,
 
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-)
+#     # If you wish to associate users to errors (assuming you are using
+#     # django.contrib.auth) you may enable sending PII data.
+#     send_default_pii=True
+# )
 
 # Caching
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': os.environ['REDIS'],
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+#         'LOCATION': os.environ['REDIS'],
+#     }
+# }
 
 # Configure Django App for Heroku.
 # import django_heroku
 # django_heroku.settings(locals())
-# Security Settings
-SECURE_HSTS_SECONDS = os.environ['SECURE_HSTS_SECONDS']
-#SECURE_SSL_REDIRECT = os.environ['SECURE_SSL_REDIRECT']
-SESSION_COOKIE_SECURE = os.environ['SESSION_COOKIE_SECURE']
-CSRF_COOKIE_SECURE = os.environ['CSRF_COOKIE_SECURE']
-SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ['SECURE_HSTS_INCLUDE_SUBDOMAINS']
-SECURE_HSTS_PRELOAD = os.environ['SECURE_HSTS_PRELOAD']
+if os.environ.get('DJANGO_ENVIRONMENT') == 'production':
+    # Production Security settings
+    SECURE_HSTS_SECONDS = os.environ['SECURE_HSTS_SECONDS']
+    SECURE_SSL_REDIRECT = os.environ['SECURE_SSL_REDIRECT']
+    SESSION_COOKIE_SECURE = os.environ['SESSION_COOKIE_SECURE']
+    CSRF_COOKIE_SECURE = os.environ['CSRF_COOKIE_SECURE']
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ['SECURE_HSTS_INCLUDE_SUBDOMAINS']
+    SECURE_HSTS_PRELOAD = os.environ['SECURE_HSTS_PRELOAD']
+
+
+
 # CORS
 CORS_ALLOW_CREDENTIALS = False
 

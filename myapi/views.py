@@ -10,10 +10,6 @@ from .models import Alerts, AustralianArmy, British, CanadianArmy, Changelog, Ir
 # Genereating PDF's
 from fpdf import FPDF
 from django.http import FileResponse
-import io
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import letter
 
 
 
